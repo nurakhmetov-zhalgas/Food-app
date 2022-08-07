@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 
-
-from .models import Follow
+from users.models import Follow
+from recipes.serializers import FollowRecipeSerializer
 
 User = get_user_model()
 
@@ -45,8 +45,16 @@ class FollowSerializer(serializers.ModelSerializer):
     recipes_count = serializers.IntegerField(source="recipes.count", read_only=True)
 
     def get_recipes(self, obj):
-        # TODO implement after creating "recipes" app
-        pass
+        request = self.context.get("request")
+        limit = request.GET.get("recipes_limit")
+        author = get_object_or_404(User, id=obj.pk)
+        recipes = author.recipes.all()
+        if limit:
+            recipes = recipes[: int(limit)]
+        serializer = FollowRecipeSerializer(
+            recipes, many=True, context={"request": request}
+        )
+        return serializer.data
 
     def get_is_subscribed(self, obj):
         if self.context["request"].user.is_anonymous:
