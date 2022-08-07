@@ -40,12 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #local
     'users.apps.UsersConfig',
-    #'recipes.apps.RecipesConfig',
+    'recipes.apps.RecipesConfig',
     #3d
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    #'django_filters',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +140,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
+    "DEFAULT_PAGINATION_CLASS": "recipes.paginations.CustomPageNumberPagination",
+    "PAGE_SIZE": 6,
 }
 
 # Djoser settings
