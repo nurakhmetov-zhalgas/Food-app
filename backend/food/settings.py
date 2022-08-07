@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #local
     'users.apps.UsersConfig',
+    #'recipes.apps.RecipesConfig',
     #3d
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    #'django_filters',
 ]
 
 MIDDLEWARE = [
