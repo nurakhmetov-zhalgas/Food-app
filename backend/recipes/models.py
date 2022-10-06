@@ -38,7 +38,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField("Название рецепта", max_length=200)
-    image = models.ImageField("Изображение", upload_to="media/recipes/images/")
+    image = models.ImageField("Изображение", upload_to="recipes/images/")
     text = models.TextField("Описание")
     author = models.ForeignKey(
         User,

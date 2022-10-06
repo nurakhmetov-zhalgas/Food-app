@@ -112,6 +112,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
             content += "Список покупок пуст"
         return HttpResponse(
             content,
-            content_type="text/plai, charset=utf8",
+            content_type="text/plain, charset=utf8",
             headers={"Content-Disposition": "attachment; filename=shopping_cart.txt"},
         )

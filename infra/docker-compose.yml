@@ -1,5 +1,28 @@
-version: '3.3'
+version: '3.8'
 services:
+  db:
+    image: postgres:13.3
+    volumes:
+      - db_vol:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  backend:
+    build:
+      context: ../backend
+    command: >
+      sh -c "python manage.py collectstatic --no-input &&
+               python manage.py migrate &&
+               python manage.py createdata
+               gunicorn food.wsgi:application --bind 0:8000"
+    restart: always
+    volumes:
+      - static_vol:/app/backend_static/
+      - media_vol:/app/backend_media/
+    depends_on:
+      - db
+    env_file:
+      - ./.env
 
   frontend:
     build:
@@ -15,3 +38,12 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
+      - static_vol:/var/html/static/
+      - media_vol:/var/html/backend_media/
+    depends_on:
+      - backend
+
+volumes:
+  db_vol:
+  static_vol:
+  media_vol:
