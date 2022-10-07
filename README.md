@@ -22,8 +22,12 @@ source venv/bin/activate # в зависимости от ОС
 pip install -r backend/requirements.txt
 ```
 3) Создайте в папке infra файл .env (на примере файла .env.example)
-4) Запустите сборку контейнеров. Необходимо заранее установить docker, docker-compose
 ```shell
+mv 
+```
+5) Запустите сборку контейнеров. Необходимо заранее установить docker, docker-compose
+```shell
+cd infra
 sudo docker-compose up --build
 ```
 Проект развернут на localhost
