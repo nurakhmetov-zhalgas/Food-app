@@ -23,7 +23,7 @@ pip install -r backend/requirements.txt
 ```
 3) Создайте в папке infra файл .env (на примере файла .env.example)
 ```shell
-mv 
+mv infra/.env.example infra/.env
 ```
 5) Запустите сборку контейнеров. Необходимо заранее установить docker, docker-compose
 ```shell
