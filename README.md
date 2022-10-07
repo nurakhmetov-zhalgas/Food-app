@@ -36,3 +36,9 @@ sudo docker-compose up --build
 ```shell
 sudo docker-compose exec python manage.py cretesuperuser
 ```
+
+### Пример установки
+![screen-gif](./assets/install.gif)
+
+### Работа приложения
+![screen-gif](./assets/app.gif)
