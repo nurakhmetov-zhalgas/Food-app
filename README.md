@@ -21,7 +21,8 @@ python3 -m venv venv
 source venv/bin/activate # в зависимости от ОС
 pip install -r backend/requirements.txt
 ```
-3) Запустите сборку контейнеров. Необходимо заранее установить docker, docker-compose
+3) Создайте в папке infra файл .env (на примере файла .env.example)
+4) Запустите сборку контейнеров. Необходимо заранее установить docker, docker-compose
 ```shell
 sudo docker-compose up --build
 ```
